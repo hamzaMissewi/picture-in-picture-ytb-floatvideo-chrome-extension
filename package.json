@@ -1,0 +1,29 @@
+{
+  "name": "floatvid-extension",
+  "version": "1.0.0",
+  "description": "Production-ready PiP Chrome extension",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "icons": "tsx scripts/generate-icons.ts",
+    "package": "npm run build && node scripts/package.mjs",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.0.0",
+    "sharp": "^0.33.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
+  }
+}

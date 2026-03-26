@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FloatVid</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand: #4f6ef7;
+            --green: #2ecc71;
+            --red: #e74c3c;
+            --orange: #f39c12;
+            --bg: #ffffff;
+            --surface: #f4f6fb;
+            --text: #1a1d23;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 10px;
+        }
+
+        body {
+            width: 300px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+        }
+
+        /* ── Header ── */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .logo {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #4f6ef7 0%, #34c77b 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo svg {
+            display: block;
+        }
+
+        .brand-name {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -.3px;
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 600;
+            background: var(--surface);
+            color: var(--brand);
+            border: 1px solid #c7d2fe;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .icon-btn {
+            width: 28px;
+            height: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: background .15s;
+        }
+
+        .icon-btn:hover {
+            background: #e8ecff;
+            color: var(--brand);
+        }
+
+        /* ── Status pill ── */
+        .status-bar {
+            margin: 12px 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--muted);
+            flex-shrink: 0;
+            transition: background .3s;
+        }
+
+        .dot.active {
+            background: var(--green);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, .2);
+        }
+
+        .dot.inactive {
+            background: var(--muted);
+        }
+
+        .status-label {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .status-label strong {
+            color: var(--text);
+        }
+
+        /* ── Main button ── */
+        .main-section {
+            padding: 12px 16px;
+        }
+
+        #togglePip {
+            width: 100%;
+            padding: 12px;
+            background: var(--brand);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background .15s, transform .1s, opacity .15s;
+            letter-spacing: -.1px;
+        }
+
+        #togglePip:hover {
+            background: #3a5ce8;
+        }
+
+        #togglePip:active {
+            transform: scale(.98);
+        }
+
+        #togglePip:disabled {
+            opacity: .6;
+            cursor: default;
+        }
+
+        #togglePip svg {
+            flex-shrink: 0;
+        }
+
+        /* ── Shortcut chip ── */
+        .shortcut-row {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        kbd {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-bottom-width: 2px;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--text);
+        }
+
+        /* ── Sites strip ── */
+        .sites {
+            padding: 0 16px 12px;
+        }
+
+        .sites-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .sites-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .site-chip {
+            padding: 3px 9px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 10px 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer a {
+            color: var(--brand);
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-right {
+            font-size: 10px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="brand">
+            <div class="logo">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+                    <path d="M21 3H3C1.9 3 1 3.9 1 5v14c0 1.1.9 2 2 2h18
+                   c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h8v6h-8z" />
+                </svg>
+            </div>
+            <span class="brand-name">FloatVid</span>
+            <span class="badge">PiP</span>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" id="optionsBtn" title="Settings">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0
+                   1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65
+                   0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9
+                   19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0
+                   1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65
+                   0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6
+                   9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0
+                   1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0
+                   0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51
+                   1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0
+                   1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65
+                   0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0
+                   0-1.51 1z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar">
+        <div class="dot inactive" id="statusDot"></div>
+        <span class="status-label" id="statusLabel">
+            <strong>Ready</strong> — click to float the video
+        </span>
+    </div>
+
+    <!-- Main action -->
+    <div class="main-section">
+        <button id="togglePip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 3H3C1.9 3 1 3.9 1 5v14c0 1.1.9 2 2 2h18
+                 c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h8v6h-8z" />
+            </svg>
+            Toggle Picture-in-Picture
+        </button>
+
+        <div class="shortcut-row" id="shortcutRow">
+            <kbd>Alt</kbd>+<kbd>P</kbd>
+            &nbsp;/&nbsp;
+            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+        </div>
+    </div>
+
+    <!-- Supported sites -->
+    <div class="sites">
+        <div class="sites-label">Works on</div>
+        <div class="sites-grid">
+            <span class="site-chip">YouTube</span>
+            <span class="site-chip">Netflix</span>
+            <span class="site-chip">Twitch</span>
+            <span class="site-chip">Prime</span>
+            <span class="site-chip">Disney+</span>
+            <span class="site-chip">+ any site</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="https://www.hamzamissaoui.dev" target="_blank">hamzamissaoui.dev</a>
+        <span class="footer-right">v1.0.0</span>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>

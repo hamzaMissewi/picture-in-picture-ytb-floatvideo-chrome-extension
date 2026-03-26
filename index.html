@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloatVid - Smart Picture-in-Picture Extension</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .demo-video {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .video-container {
+            margin: 2rem 0;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .supported-sites {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .site-badge {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #495057;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .site-badge:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .how-to-use {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 2rem 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📺</div>
+            <h1>FloatVid</h1>
+            <p class="tagline">Smart Picture-in-Picture for any video</p>
+            <!-- <a href="https://chromewebstore.google.com/detail/picture-in-picture/efaidnbmnnnibpcajpcglclefindmkaj?hl=en"
+    class="cta-button">Add to -->
+            <!-- Chrome - It's Free!</a> -->
+            <a href="#" class="cta-button"
+                onclick="event.preventDefault(); alert('Coming Soon! Sign up for updates below.')">Coming Soon to
+                Chrome!</a>
+        </header>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3 class="feature-title">Universal Support</h3>
+                <p class="feature-description">Works on YouTube, Netflix, Twitch, and virtually any video website with
+                    HTML5 video players.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">Instant Picture-in-Picture activation with a single click or keyboard
+                    shortcut (Ctrl+Shift+P).</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Smart Detection</h3>
+                <p class="feature-description">Automatically detects videos on the page and provides intuitive controls
+                    for floating them.</p>
+            </div>
+        </section>
+
+        <section class="demo-video">
+            <h2>See It In Action</h2>
+            <div class="video-container">
+                <video controls poster="https://via.placeholder.com/800x450/667eea/ffffff?text=FloatVid+Demo+Video"
+                    style="width: 100%; max-width: 800px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+                    <source src="demo.mp4" type="video/mp4">
+                    <p>Your browser doesn't support video playback. <a href="demo.mp4">Download the demo video</a>
+                        instead.</p>
+                </video>
+            </div>
+            <p class="video-description">Watch how FloatVid transforms your video experience with one-click
+                Picture-in-Picture mode.</p>
+        </section>
+
+        <section class="supported-sites">
+            <h2>Supported Sites</h2>
+            <div class="sites-grid">
+                <div class="site-badge">YouTube</div>
+                <div class="site-badge">Netflix</div>
+                <div class="site-badge">Twitch</div>
+                <div class="site-badge">Vimeo</div>
+                <div class="site-badge">Dailymotion</div>
+                <div class="site-badge">Facebook</div>
+                <div class="site-badge">Twitter</div>
+                <div class="site-badge">Instagram</div>
+                <div class="site-badge">TikTok</div>
+                <div class="site-badge">And more!</div>
+            </div>
+        </section>
+
+        <section class="how-to-use">
+            <h2>How to Use</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Install Extension</h4>
+                    <p>Add FloatVid to your Chrome browser from the Chrome Web Store</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Visit Video Site</h4>
+                    <p>Navigate to any website with video content like YouTube or Netflix</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Click or Use Shortcut</h4>
+                    <p>Click the extension icon or press Ctrl+Shift+P to float the video</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Enjoy Multitasking</h4>
+                    <p>Watch videos while browsing, working, or using other apps</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 FloatVid. Made with ❤️ for better video multitasking.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
