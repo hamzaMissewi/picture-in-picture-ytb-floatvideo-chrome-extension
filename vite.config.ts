@@ -10,7 +10,8 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'), // Landing page
+        // main: resolve(__dirname, 'index.html'), // Landing page with TypeScript
+        main: resolve(__dirname, 'src/main.ts'), // Landing page with TypeScript
         background: resolve(__dirname, 'src/background.ts'),
         content: resolve(__dirname, 'src/content.ts'),
         'popup/popup': resolve(__dirname, 'src/popup/popup.ts'),
@@ -41,12 +42,20 @@ export default defineConfig({
           source: readFileSync(resolve(__dirname, 'src/options/options.html'), 'utf-8')
         });
 
+        // Copy optimized index.html
+        this.emitFile({
+          type: 'asset',
+          fileName: 'index.html',
+          source: readFileSync(resolve(__dirname, 'index.html'), 'utf-8')
+        });
+
         // Copy popup.html
         this.emitFile({
           type: 'asset',
           fileName: 'popup/popup.html',
           source: readFileSync(resolve(__dirname, 'src/popup/popup.html'), 'utf-8')
         });
+
         // Copy manifest.json (highly recommended)
         this.emitFile({
           type: 'asset',

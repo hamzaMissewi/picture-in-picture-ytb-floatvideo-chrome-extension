@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FloatVid - Smart Picture-in-Picture Extension</title>
+    <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
     <style>
         * {
             margin: 0;
@@ -44,6 +45,11 @@
             font-size: 2rem;
             font-weight: bold;
             color: #667eea;
+        }
+
+        .logo svg {
+            width: 60px;
+            height: 60px;
         }
 
         h1 {
@@ -223,15 +229,49 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">📺</div>
+            <div class="logo">
+                <svg width="60" height="60" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4285f4;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#34a853;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Background -->
+                    <rect width="128" height="128" rx="20" fill="url(#grad)" />
+
+                    <!-- Video frame -->
+                    <rect x="20" y="30" width="60" height="45" rx="4" fill="white" opacity="0.9" />
+
+                    <!-- Play button -->
+                    <polygon points="40,45 40,60 55,52.5" fill="#4285f4" />
+
+                    <!-- PiP window -->
+                    <rect x="70" y="60" width="35" height="25" rx="3" fill="white" opacity="0.8" />
+                    <rect x="75" y="65" width="25" height="15" rx="2" fill="#4285f4" />
+
+                    <!-- Text -->
+                    <text x="64" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold"
+                        text-anchor="middle" fill="white">PiP</text>
+                </svg>
+            </div>
             <h1>FloatVid</h1>
             <p class="tagline">Smart Picture-in-Picture for any video</p>
             <!-- <a href="https://chromewebstore.google.com/detail/picture-in-picture/efaidnbmnnnibpcajpcglclefindmkaj?hl=en"
     class="cta-button">Add to -->
-            <!-- Chrome - It's Free!</a> -->
-            <a href="#" class="cta-button"
-                onclick="event.preventDefault(); alert('Coming Soon! Sign up for updates below.')">Coming Soon to
-                Chrome!</a>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <!-- style='padding: 1px' -->
+                <a href="#" class="cta-button"
+                    onclick="event.preventDefault(); alert('Coming Soon! Sign up for updates below.')">Coming Soon to
+                    Chrome!</a>
+                <a href="https://github.com/hamzaMissewi" target="_blank" rel="noopener noreferrer" class="cta-button"
+                    style="background: #333;">View on GitHub</a>
+                <a href="https://github.com/hamzaMissewi" target="_blank" rel="noopener noreferrer" class="cta-button"
+                    style="background: #08176d;">View on Website</a>
+                <a href="https://www.hamzamissaoui.dev" target="_blank" rel="noopener noreferrer" class="cta-button"
+                    style="background: #0077b5;">Connect on LinkedIn</a>
+            </div>
         </header>
 
         <section class="features">
@@ -258,10 +298,12 @@
         <section class="demo-video">
             <h2>See It In Action</h2>
             <div class="video-container">
-                <video controls poster="https://via.placeholder.com/800x450/667eea/ffffff?text=FloatVid+Demo+Video"
-                    style="width: 100%; max-width: 800px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
-                    <source src="demo.mp4" type="video/mp4">
-                    <p>Your browser doesn't support video playback. <a href="demo.mp4">Download the demo video</a>
+                <video controls poster="./public/icons/main.mp4#t=0.1"
+                    style="width: 100%; max-width: 800px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);"
+                    preload="metadata" autoplay muted loop>
+                    <source src="./public/icons/main.mp4" type="video/mp4">
+                    <p>Your browser doesn't support video playback. <a href="./public/icons/main.mp4">Download the demo
+                            video</a>
                         instead.</p>
                 </video>
             </div>
@@ -275,7 +317,7 @@
                 <div class="site-badge">YouTube</div>
                 <div class="site-badge">Netflix</div>
                 <div class="site-badge">Twitch</div>
-                <div class="site-badge">Vimeo</div>
+                <!-- <div class="site-badge">Vimeo</div> -->
                 <div class="site-badge">Dailymotion</div>
                 <div class="site-badge">Facebook</div>
                 <div class="site-badge">Twitter</div>
@@ -312,13 +354,30 @@
         </section>
 
         <footer>
-            <p>&copy; 2024 FloatVid. Made with ❤️ for better video multitasking.</p>
-            <p style="margin-top: 1rem;">
-                <a href="https://github.com/hamza47/floatvid-chrome-extension" target="_blank" rel="noopener noreferrer"
-                    style="color: white; text-decoration: underline; font-weight: 500;">
-                    View on GitHub
-                </a>
-            </p>
+            <!-- <p>&copy; 2026 FloatVid Extension. Made with ❤️ for better video multitasking.</p> -->
+            <p>&copy; 2026 FloatVid Chorme Extension. Made with experience for video player float.</p>
+            <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <a href="https://linkedin.com/in/hamzamissaoui" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">LinkedIn</a>
+                <a href="https://github.com/hamzaMissewi" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">GitHub</a>
+                <a href="https://www.hamzamissaoui.dev" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Portfolio</a>
+                <a href="https://website.hamzamissaoui.dev" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Website</a>
+                <!-- <a href="https://www.hamzamissaoui.online" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Online</a> -->
+                <a href="https://2026.hamzamissaoui.online" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Website 2</a>
+                <a href="https://website.hamzamissaoui.dev" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Website 3</a>
+                <a href="https://www.hamzamissaoui.online" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Website 4</a>
+                <a href="https://chatbot.hamzamissaoui.online" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Chatbot</a>
+                <a href="https://link.hamzamissaoui.dev/projects" target="_blank" rel="noopener noreferrer"
+                    style="color: white; text-decoration: underline; font-weight: 500;">Projects</a>
+            </div>
         </footer>
     </div>
 </body>

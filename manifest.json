@@ -29,7 +29,7 @@
       ],
       "js": [
         "pip-shared.js",
-        "content.js"
+        "dist/content.js"
       ],
       "run_at": "document_idle"
     },

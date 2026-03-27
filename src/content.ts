@@ -22,10 +22,19 @@ chrome.storage.sync.get(DEFAULT_SETTINGS, (stored) => {
     settings = stored as UserSettings;
 
     // Initialize shared utilities after they're loaded
-    if (window.PipExt) {
-        window.PipExt.setupMessageListener(getBestVideo);
-        window.PipExt.setupAutoPip(getBestVideo);
-    }
+    const initShared = () => {
+        if (window.PipExt) {
+            window.PipExt.setupMessageListener(getBestVideo);
+            window.PipExt.setupAutoPip(getBestVideo);
+            // Set initial PiP state
+            window.PipExt.active = !!document.pictureInPictureElement;
+            window.PipExt.updateButton();
+        }
+    };
+
+    // Try immediately, or wait a bit for pip-shared.js to load
+    initShared();
+    setTimeout(initShared, 100);
 
     scanVideos();
 });
@@ -276,9 +285,13 @@ chrome.runtime.onMessage.addListener(
     (msg: ExtMessage, _sender, sendResponse: (r: ExtResponse) => void) => {
 
         if (msg.action === 'toggle-pip') {
-            togglePiP()
-                .then(() => sendResponse({ success: true, active: !!document.pictureInPictureElement }))
-                .catch((e: Error) => sendResponse({ success: false, error: e.message }));
+            const video = getBestVideo();
+            if (video) {
+                window.PipExt.toggle(video);
+                sendResponse({ success: true, active: !!document.pictureInPictureElement });
+            } else {
+                sendResponse({ success: false, error: 'No video found' });
+            }
             return true;
         }
 

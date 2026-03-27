@@ -12,7 +12,7 @@
   function injectButton() {
     if (document.getElementById(PipExt.BUTTON_ID)) return;
 
-    // YouTube 2024+ nests controls; fall back to flat layout
+    // YouTube 2026+ nests controls; fall back to flat layout
     const container =
       document.querySelector(".ytp-right-controls-right") ||
       document.querySelector(".ytp-right-controls");
